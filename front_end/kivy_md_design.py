@@ -13,7 +13,7 @@ from kivymd.uix.segmentedbutton import (
 )
 from kivymd.uix.segmentedbutton import MDSegmentedButton, MDSegmentedButtonItem
 from kivymd.uix.menu import MDDropdownMenu
-
+from kivy.core.window import Window
 
 KV = """
 MDBoxLayout:
@@ -29,7 +29,7 @@ MDBoxLayout:
             size_hint_y: 0.1
             MDBoxLayout:
                 orientation: "vertical"
-                padding: [20, 40, 20, 20]  # Espaçamento ao redor
+                padding: [20, 50, 20, 20] 
                 MDLabel:
                     text: "3D Scanner"
                     font_style: "Display"
@@ -49,14 +49,14 @@ MDBoxLayout:
             CustomMDCard:
                 orientation: "vertical"
                 padding: 15
-                md_bg_color: 1, 1, 1, 1  # Cor branca constante
+                md_bg_color: 1, 1, 1, 1 
                 elevation: 4
                 radius: [15, 15, 15, 15]
                 MDBoxLayout:
                     orientation: "vertical"
                     spacing: 30  # Espaçamento entre os elementos
                     size_hint_y: None
-                    height: self.minimum_height  # Ajusta a altura ao conteúdo
+                    height: self.minimum_height 
                     MDTextField:
                         mode: "filled"
                         MDTextFieldHintText:
@@ -82,13 +82,13 @@ MDBoxLayout:
                         MDTextFieldMaxLengthText:
                             max_text_length: 10
                     MDSegmentedButton:
-                        size_hint_x: 1  # Faz com que ocupe toda a largura do card
-                        height: "40dp"  # Define a altura do botão segmentado
-                        #pos_hint: {"center_x": 0.5}  # Centraliza horizontalmente dentro do card
+                        size_hint_x: 1  
+                        height: "40dp"  
+                        #pos_hint: {"center_x": 0.5} 
 
                         #pos_hint: {"center_x": 0.2, "center_y": 0.5}
                         #size_hint: None, None
-                        #size: "50dp", "40dp"  # Ajuste manual do tamanho, opcional
+                        #size: "50dp", "40dp"  
                         MDSegmentedButtonItem:
                             font_style: "Caption"
                             MDSegmentButtonLabel:
@@ -102,16 +102,20 @@ MDBoxLayout:
                             MDSegmentButtonLabel:
                                 text: "Intersexo"
                     MDDropDownItem:
-                        pos_hint: {"center_x": .5, "center_y": .5}
+                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                        size_hint_x: 1  
                         on_release: app.open_menu(self)
+                        font_size: "48sp" 
 
                         MDDropDownItemText:
                             id: drop_text
                             text: "Etnia do voluntário"
+                            font_size: "24sp"  
+
 
             MDBoxLayout:
                 orientation: "vertical"
-                padding: [20, 40, 20, 300]  # Espaçamento ao redor
+                padding: [20, 40, 20, 300]  
                 MDCircularProgressIndicator:
                     size_hint: None, None
                     size: "48dp", "48dp"
@@ -121,21 +125,21 @@ MDBoxLayout:
         GridLayout:
             cols: 1
             size_hint_y: 0.1
-            height: "30dp"  # Ajuste de altura fixo
+            height: "30dp"  
 
             MDBoxLayout:
                 padding: "350dp"
                 spacing: 10
                 orientation: "horizontal"  
                 size_hint: None, None
-                size: "200dp", "40dp"  # Tamanho fixo do botão
+                size: "200dp", "40dp"  
                 pos_hint: {"center_x": 0.9, "center_y": 0.5}
 
                 MDButton:
                     #text: "Imprimir"
                     size_hint: None, None
-                    width: "200dp"  # Defini uma largura fixa para o botão
-                    height: "40dp"  # Defini a altura do botão
+                    width: "200dp"  
+                    height: "40dp"  
                     pos_hint: {"center_x": 10, "center_y": 0.5}
                     style: "elevated"
                     pos_hint: {"center_x": .9, "center_y": .5}
@@ -174,9 +178,9 @@ class CustomMDCard(MDCard):
         self.md_bg_color = (1, 1, 1, 1)
         return super().on_touch_move(touch)
 
-
-
 class MyApp(MDApp):
+    title = "3D Scanner"
+    icon = 'ico/scanner-de-rosto.png'
     def open_menu(self, item):
         menu_items = [
             {
